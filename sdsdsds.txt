@@ -1,0 +1,21 @@
+1.toca tener en cuenta que los empleados pueden cambiar/rotar de turno por ende no se puede tener  que seleccioanr el turno 
+en registro el sistema debe asumir que ejemplo si empleado se conecto alas 2pm es por que tenia el ingreso a la 1pm / si empleado ingresa alas 
+8:50am se asume que empleado ingresaba alas 8am
+2. los empleados pueden salir a almorzar tiene un hora diarias es decir son dos turnos 8am a 1pm y 1pm a 5pm
+pero en el lapso de ese tiempo tienen una hora de almuerzo y algunos braks(15minutos) por ende el empleado debe poner pulsar 
+salir a break o salir a almuerzo pero no tiene qeu afectar turno obviamente el sistema debe markar esos cambios
+para que el admin pueda saber el estado actual del empleado
+3. se hara cambio en la vista del admin: se debe crear un panel izquierdo donde este el boton de dashboard(que contendra
+el resumen del equipo) y otro boton que diga recuperar contraseña(el admin debera tener un formulario donde ingresara 
+correo de empleado si el correo existre en la base de datos debe salir mensaje en modal diciendo "correo encontrado" y saldra los campos 
+ingresar contraseña y confirmar contraseña ovbiamente dicho campo no puede permitir ingresar espacios
+ni superar los 15 caracteres) una vez se cambie la contraseña saldra modal de confirmacion, toca agregar otro boton qeu se llame "empleados"
+aqui el admin tendra una lista de los empleados registrados donde podra filtrar por enpleado y poder dar click sobre cada empleado para ver su historial a detalle
+ademas de su estado en tiempo real (en turno,en break,en almuerzo,desconectado)
+4.tenemos migration_001_schedules,migration_002_dynamic_schedules,schema,seed_new_admin
+crea un archivo llamado sql_final y dame el scrip final para dejarlo en un solo archivo 
+recuerda que dicho scrip en caso de que ya existan las tablas creadas las limpie 
+(el scrip de limpieza tablas debe estar en la parte final del scrip comentareado)
+5.tengo entendido que subiremos el app a un servidor por ente toca separar el front y el back en dos carpetas distintas
+ademas como toca subirlo ya no sera una plicacion de escritorio
+dicho eso elimina todo esa logica de aplicacion de escritorio 

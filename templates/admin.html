@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel administrativo | ControlAsist</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-view="admin">
+    <div id="toast" class="toast"></div>
+    <main class="app-screen">
+      <nav class="app-nav">
+        <div class="brand">
+          <i class="brand-mark"></i>
+          ControlAsist
+        </div>
+        <div class="user-pill">
+          <div>
+            <strong data-user-name></strong>
+            <br />
+            <small>Administrador</small>
+          </div>
+          <div class="avatar" data-user-initials></div>
+          <button class="btn btn-outline" id="logout">Salir</button>
+        </div>
+      </nav>
+      <div class="workspace">
+        <div class="workspace-top">
+          <div>
+            <span class="eyebrow">Centro de control</span>
+            <h1>Resumen del equipo.</h1>
+            <p class="workspace-sub">Una mirada limpia a la operación de hoy.</p>
+          </div>
+          <button class="btn btn-dark" id="change-password">Gestionar contraseñas</button>
+        </div>
+        <div class="metrics" id="metrics"></div>
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-title">
+              <span>Asistencias generales</span>
+              <span class="panel-note">Esta semana</span>
+            </div>
+            <div class="chart" id="chart"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-title">
+              <span>Indicadores</span>
+              <span class="panel-note">Período actual</span>
+            </div>
+            <div class="mini-list" id="admin-insights"></div>
+          </section>
+        </div>
+        <section class="panel table-panel">
+          <div class="panel-title">
+            <span>Tabla de asistencias</span>
+            <div class="table-tools">
+              <input class="input" id="search" placeholder="Buscar persona" />
+              <input class="input date-input" id="start-date" type="date" />
+              <input class="input date-input" id="end-date" type="date" />
+              <button class="btn btn-outline" id="export-excel">Excel ↓</button>
+              <button class="btn btn-outline" id="export-pdf">PDF ↓</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" id="select-all" /></th>
+                  <th>Empleado</th>
+                  <th>Fecha</th>
+                  <th>Ingreso</th>
+                  <th>Salida</th>
+                  <th>Estado</th>
+                  <th>Horas</th>
+                </tr>
+              </thead>
+              <tbody id="admin-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div class="modal-backdrop is-hidden" id="password-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Gestionar empleado</h3>
+        <p>Actualiza contraseña o número de documento cifrado del empleado.</p>
+        <form id="password-form" class="form">
+          <label>
+            Correo del empleado
+            <input class="input" name="email" type="email" required />
+          </label>
+          <label>
+            Nueva contraseña
+            <small>(opcional)</small>
+            <input class="input" name="password" type="password" minlength="10" />
+          </label>
+          <label>
+            Número de documento
+            <small>(opcional, máximo 15 dígitos)</small>
+            <input
+              class="input"
+              name="document_number"
+              inputmode="numeric"
+              pattern="[0-9]{1,15}"
+              maxlength="15"
+            />
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-dark">Guardar cambio</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

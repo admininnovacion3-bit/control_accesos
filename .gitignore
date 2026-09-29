@@ -1,0 +1,17 @@
+# Secretos locales: nunca se suben a Git.
+.env
+.env.*
+!.env.example
+
+# Entorno y archivos generados por Python.
+.venv/
+__pycache__/
+*.py[cod]
+
+# Configuración del editor y sistema operativo.
+.vscode/
+.idea/
+desktop.ini
+.DS_Store
+.env
+.env.example

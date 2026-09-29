@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ControlAsist | Control de asistencia</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-view="public">
+    <div id="toast" class="toast"></div>
+    <main class="shell">
+      <nav class="public-nav">
+        <div class="brand">
+          <i class="brand-mark"></i>
+          ControlAsist
+        </div>
+        <div class="nav-links"></div>
+        <button class="btn btn-outline" data-open-modal="login-modal">Iniciar sesión</button>
+      </nav>
+      <section class="hero" id="inicio">
+        <div>
+          <span class="eyebrow">Control de asistencia</span>
+          <h1>El tiempo de tu equipo, en orden.</h1>
+          <p>
+            Registra jornadas, valida ingresos y consulta el estado de asistencia de una forma
+            simple y segura.
+          </p>
+          <button class="btn btn-dark" data-open-modal="login-modal">
+            Entrar al portal
+            <span>↗</span>
+          </button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="orb"></span>
+          <span class="orb lime"></span>
+          <div class="megaphone"></div>
+        </div>
+      </section>
+      <!-- Puedes editar o eliminar estas marcas directamente desde este HTML. -->
+      <div class="proof" id="beneficios"></div>
+    </main>
+    <div class="modal-backdrop is-hidden" id="login-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Bienvenido de vuelta</h3>
+        <p>Ingresa a tu espacio de asistencia.</p>
+        <form id="login-form" class="form">
+          <label>
+            Correo
+            <input class="input" type="email" name="email" placeholder="tu@empresa.com" required />
+          </label>
+          <label>
+            Contraseña
+            <input class="input" type="password" name="password" required />
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-dark">Entrar</button>
+          </div>
+        </form>
+        <p class="modal-switch">
+          ¿Eres empleado nuevo?
+          <button class="link-button" data-switch-modal="register-modal">Regístrate</button>
+        </p>
+      </section>
+    </div>
+    <div class="modal-backdrop is-hidden" id="register-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Crea tu acceso</h3>
+        <p>El registro de empleados requiere validación Super Admin.</p>
+        <form id="register-form" class="form">
+          <label>
+            Nombre
+            <input
+              class="input"
+              name="first_name"
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+"
+              maxlength="20"
+              required
+            />
+          </label>
+          <label>
+            Apellido
+            <input
+              class="input"
+              name="last_name"
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+"
+              maxlength="20"
+              required
+            />
+          </label>
+          <label>
+            Tipo de documento
+            <!-- Opciones cargadas desde la tabla document_types por app.js. -->
+            <select class="input" name="document_type" data-document-types required>
+              <option value="">Cargando tipos...</option>
+            </select>
+          </label>
+          <label>
+            Número de documento
+            <input
+              class="input"
+              name="document_number"
+              inputmode="numeric"
+              pattern="[0-9]+"
+              maxlength="15"
+              required
+            />
+          </label>
+          <label>
+            Correo
+            <input class="input" type="email" name="email" required />
+          </label>
+          <label>
+            Contraseña
+            <span class="password-field">
+              <input
+                class="input"
+                type="password"
+                name="password"
+                minlength="10"
+                pattern="\S+"
+                required
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle
+                aria-label="Mostrar contraseña"
+              >
+                ◉
+              </button>
+            </span>
+          </label>
+          <label>
+            Confirmar contraseña
+            <span class="password-field">
+              <input
+                class="input"
+                type="password"
+                name="password_confirmation"
+                minlength="10"
+                pattern="\S+"
+                required
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle
+                aria-label="Mostrar contraseña"
+              >
+                ◉
+              </button>
+            </span>
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-dark">Registrarme</button>
+          </div>
+        </form>
+        <p class="modal-switch">
+          ¿Ya tienes cuenta?
+          <button class="link-button" data-switch-modal="login-modal">Inicia sesión</button>
+        </p>
+      </section>
+    </div>
+    <div class="modal-backdrop is-hidden" id="super-admin-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Validación Super Admin</h3>
+        <p>Escribe la contraseña autorizada para habilitar el registro.</p>
+        <form id="super-admin-form" class="form">
+          <label>
+            Contraseña Super Admin
+            <input class="input" type="password" name="super_admin_password" required />
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-dark">Validar</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

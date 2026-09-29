@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi asistencia | ControlAsist</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body data-view="employee">
+    <div id="toast" class="toast"></div>
+    <main class="app-screen">
+      <nav class="app-nav">
+        <div class="brand">
+          <i class="brand-mark"></i>
+          ControlAsist
+        </div>
+        <div class="user-pill">
+          <div>
+            <strong data-user-name></strong>
+            <br />
+            <small>Empleado</small>
+          </div>
+          <div class="avatar" data-user-initials></div>
+          <button class="btn btn-outline" id="logout">Salir</button>
+        </div>
+      </nav>
+      <div class="workspace">
+        <div class="workspace-top">
+          <div>
+            <span class="eyebrow">Mi jornada</span>
+            <h1>
+              Hola,
+              <span data-user-first-name></span>
+              .
+            </h1>
+            <p class="workspace-sub">Aquí tienes el pulso de tu asistencia.</p>
+          </div>
+          <div class="workspace-actions">
+            <button class="btn btn-outline" id="edit-profile">Editar mis datos</button>
+            <button class="btn btn-outline" id="change-my-password">Cambiar contraseña</button>
+            <button class="btn btn-lime" id="attendance-action">Cargando...</button>
+          </div>
+        </div>
+        <div class="employee-layout">
+          <section class="attendance-hero">
+            <span class="eyebrow" id="current-date"></span>
+            <h2>Haz que cada día cuente.</h2>
+            <p>
+              Tu ingreso se valida con un código único enviado a tu correo. La salida se registra
+              con una confirmación rápida.
+            </p>
+            <div class="clock" id="clock">--:--</div>
+          </section>
+          <section class="history-table">
+            <div class="panel-title">
+              <span>Histórico reciente</span>
+              <span class="panel-note">Últimos registros</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Ingreso</th>
+                    <th>Salida</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="employee-rows"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <div class="modal-backdrop is-hidden" id="code-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Revisa tu correo</h3>
+        <p>Usa el código de 6 dígitos. Caduca en 5 minutos y tienes máximo 3 intentos.</p>
+        <form id="code-form" class="form">
+          <label>
+            Código de verificación
+            <input
+              class="input"
+              name="code"
+              inputmode="numeric"
+              pattern="[0-9]{6}"
+              maxlength="6"
+              required
+            />
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-dark">Confirmar ingreso</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop is-hidden" id="checkout-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>¿Registrar salida?</h3>
+        <p>Confirmaremos la hora actual como tu salida de hoy.</p>
+        <div class="modal-actions">
+          <button class="btn btn-dark" id="confirm-checkout">Sí, registrar</button>
+        </div>
+      </section>
+    </div>
+    <div class="modal-backdrop is-hidden" id="profile-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Editar mis datos</h3>
+        <p>Tu número de documento está protegido y no puede modificarse.</p>
+        <form id="profile-form" class="form">
+          <label>
+            Nombre
+            <input
+              class="input"
+              name="first_name"
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+"
+              maxlength="20"
+              required
+            />
+          </label>
+          <label>
+            Apellido
+            <input
+              class="input"
+              name="last_name"
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ]+"
+              maxlength="20"
+              required
+            />
+          </label>
+          <label>
+            Correo
+            <input class="input" name="email" type="email" required />
+          </label>
+          <label>
+            Tipo de documento
+            <select class="input" name="document_type" data-document-types required>
+              <option value="">Cargando tipos...</option>
+            </select>
+          </label>
+          <div class="modal-actions"><button class="btn btn-dark">Guardar cambios</button></div>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop is-hidden" id="employee-password-modal">
+      <section class="modal">
+        <button class="modal-close" data-close-modal>×</button>
+        <h3>Cambiar mi contraseña</h3>
+        <form id="employee-password-form" class="form">
+          <label>
+            Nueva contraseña
+            <span class="password-field">
+              <input
+                class="input"
+                type="password"
+                name="password"
+                minlength="10"
+                pattern="\S+"
+                required
+              />
+              <button class="password-toggle" type="button" data-password-toggle>◉</button>
+            </span>
+          </label>
+          <label>
+            Confirmar contraseña
+            <span class="password-field">
+              <input
+                class="input"
+                type="password"
+                name="password_confirmation"
+                minlength="10"
+                pattern="\S+"
+                required
+              />
+              <button class="password-toggle" type="button" data-password-toggle>◉</button>
+            </span>
+          </label>
+          <div class="modal-actions"><button class="btn btn-dark">Guardar contraseña</button></div>
+        </form>
+      </section>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
